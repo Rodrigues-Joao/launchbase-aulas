@@ -144,7 +144,7 @@ header {
     color: black;
     position: absolute;
     right: 10px;
-    top: 8px;
+    top: 5px;
     cursor: pointer;
 }
 
@@ -154,4 +154,11 @@ header {
 .modal_overlay.active {
     opacity: 1;
     visibility: visible;
+}
+
+iframe {
+    width: 100%;
+    height: 90%;
+    position: absolute;
+    top: 5%;
 }
