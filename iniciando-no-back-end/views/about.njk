@@ -1,18 +1,18 @@
-{% extends "layout.html" %}
+{% extends "layout.njk" %}
     {% block head %}
-    <title>Sobre - João Rodrigues</title>
+    <title>Sobre - {{ about.name }}</title>
     {% endblock %} 
 {% block content %}
 
 <div id="imgPerfil">
-    <img src="https://avatars0.githubusercontent.com/u/67028648?s=400&u=b5cd6f10514d7ddb94347a4eebd7a4e4e7ecc59f&v=4" alt="João e suellen">
-    <h1>João Victor</h1>
-    <h2>Aluno - Rocketseat</h2>
-    <p>Programador iniciante full-stack, focado em aprender ao máximo com a <a href="https://rocketseat.com.br" target="_blank">Rocketseat</a></p>
+    <img src="{{about.photo_url}}" alt="Foto de {{about.name}}">
+    <h1>{{ about.name }}</h1>
+    <h2>{{ about.role }}</h2>
+    <p>{{ about.description }}</p>
 </div>
 <div id="links-footer" class="links">
-    <a target="_blank" href="https://github.com/vicjoao">Github</a>
-    <a target="_blank" href="https://www.instagram.com/joao51vi/">Instagram</a>
-    <a target="_blank" href="https://www.linkedin.com/in/jo%C3%A3o-victor-rodrigues-a29a81135/">Linkedin</a>
+    {% for link in about.links%}
+        <a target="_blank" href="{{link.url}}">{{link.name}}</a>
+    {% endfor %}
 </div>
 {% endblock %}

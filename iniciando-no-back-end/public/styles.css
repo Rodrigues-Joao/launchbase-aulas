@@ -87,7 +87,7 @@ header {
 
 .cards {
     max-width: 800px;
-    margin: 0 auto;
+    margin: 0 auto 30px auto;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 20px;
@@ -95,6 +95,7 @@ header {
 
 .card {
     background-color: #7159c1;
+    display: grid;
 }
 
 .card_img img {
@@ -109,6 +110,7 @@ header {
 .card_info {
     display: grid;
     grid-template-columns: 1fr 1fr;
+    align-items: center;
 }
 
 .car_price {
