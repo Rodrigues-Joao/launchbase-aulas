@@ -1,6 +1,6 @@
 {% extends "layout.njk" %} 
 {% block head %}
-<title>Vídeos - João Rodrigues</title>
+<title>{{item.title}}</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"> 
 {% endblock %}
 {% block content %}
@@ -8,7 +8,6 @@
     <h1>Aulas</h1>
 </div>
 <section class="cards">
-    {% for item in items %}
     <div class="card" id="{{item.id}}">
         <div class="card_img {{ 'featured-wrapper' if item.featured }}">
             <img src="http://i3.ytimg.com/vi/{{item.id}}/maxresdefault.jpg" alt="Imagem de {{item.title}}">
@@ -24,16 +23,7 @@
             <p class="car_price">{{item.price}}</p>
         </div>
     </div>
-    {% endfor %}
 </section>
-<div class="modal_overlay">
-    <div class="modal">
-        <a class="close-modal">
-            <i class="material-icons">close</i>
-        </a>
-        <iframe frameborder="0" src=""></iframe>
-    </div>
-</div>
-<script src="script.js"></script>
+
 
 {% endblock %}

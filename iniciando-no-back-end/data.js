@@ -8,7 +8,8 @@ module.exports = [{
         id: "DDqRgIfHJeo",
         title: "Por que o PLaystation 5 é assim?",
         duration: "13 min",
-        price: "Free"
+        price: "Free",
+        featured: true
     },
     {
         id: "3suNo2fGJSw",
@@ -20,7 +21,8 @@ module.exports = [{
         id: "spqYMJe7XIs",
         title: "10 PRINCÍPIOS de WARREN BUFFETT! | p/ investir MELHOR e ganhar mais dinheiro!",
         duration: "14 min",
-        price: "Free"
+        price: "Free",
+        featured: true
     },
     {
         id: "UeOTzCvUDSE",
@@ -32,7 +34,8 @@ module.exports = [{
         id: "dDWH3fELV6o",
         title: "CAI BEM? NOVA ZONTES 310 ADV CAIRÁ BEM NO BRASIL? (Ela está pra chegar!) - Motorede",
         duration: "10 min",
-        price: "Free"
+        price: "Free",
+        featured: true
     }
 
 ]
