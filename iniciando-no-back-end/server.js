@@ -32,9 +32,9 @@ server.get('/classes', (req, res) => {
     return res.render('classes', { items: videos })
 
 })
-server.get('/video', (req, res) => {
-    const id = req.query.id
-    console.log(id)
+server.get('/video/:id', (req, res) => {
+    const id = req.params.id
+        //console.log(id)
 
     const video = videos.find((video) => {
         return video.id == id
