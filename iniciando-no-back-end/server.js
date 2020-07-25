@@ -45,6 +45,6 @@ server.get('/video/:id', (req, res) => {
 
 })
 
-server.listen(3000, () => {
+server.listen(3001, () => {
     console.log('server is running')
 })
