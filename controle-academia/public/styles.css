@@ -60,3 +60,62 @@ header {
     width: 100%;
     transition: width 300ms ease-in-out 100ms;
 }
+
+.card {
+    background-color: white;
+    width: 700px;
+    min-height: 400px;
+    margin: 45px auto;
+    display: grid;
+    grid-template-columns: 40% 1fr;
+    animation: up 300ms ease-in-out;
+    box-shadow: 10px 10px 20px -5px rgba(0, 0, 0, 0.6);
+}
+
+@keyframes up {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+
+/*---- Details -----*/
+
+.details {
+    padding: 32px;
+}
+
+.details .item {
+    border-top: 1px solid rgba(0, 0, 0, 0.3);
+    padding: 8px 0;
+}
+
+.details .item:first-child {
+    border-top: none;
+}
+
+.details .item div:nth-child(1) {
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 26px;
+}
+
+.details .item div:nth-child(2) {
+    font-weight: normal;
+    font-size: 18px;
+}
+
+.details .item div:nth-child(2) span {
+    background-color: rgb(255, 253, 190);
+    border-radius: 20px;
+    padding: 4px 16px;
+    margin-right: 4px;
+    margin-top: 8px;
+    display: inline-block;
+    font-weight: bold;
+    color: rgb(65, 65, 65);
+}
