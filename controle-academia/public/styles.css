@@ -94,10 +94,12 @@ header {
     padding: 8px 0;
 }
 
-.details .item:first-child {
+.details .item:first-child,
+.details .item:nth-child(2) {
     border-top: none;
 }
 
+.details h3,
 .details .item div:nth-child(1) {
     font-weight: bold;
     font-size: 16px;
@@ -118,4 +120,9 @@ header {
     display: inline-block;
     font-weight: bold;
     color: rgb(65, 65, 65);
+}
+
+.details h3 {
+    text-transform: uppercase;
+    color: var(--primary-color);
 }
