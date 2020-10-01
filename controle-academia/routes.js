@@ -22,11 +22,9 @@ routes.get('/students', (req, res) => {
 
 })
 
-
-
 routes.post('/teachers', (req, res) => {
 
-    return res.send("200 OK")
+    return res.send(req.body)
 
 })
 

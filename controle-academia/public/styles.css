@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,700;1,300;1,700&display=swap');
 :root {
     --primary-color: rgb(82, 110, 136);
+    --secondary-color: rgb(255, 253, 190);
 }
 
 * {
@@ -112,7 +113,7 @@ header {
 }
 
 .details .item div:nth-child(2) span {
-    background-color: rgb(255, 253, 190);
+    background-color: var(--secondary-color);
     border-radius: 20px;
     padding: 4px 16px;
     margin-right: 4px;
@@ -125,4 +126,35 @@ header {
 .details h3 {
     text-transform: uppercase;
     color: var(--primary-color);
+}
+
+
+/*---- Form -----*/
+
+select,
+input {
+    width: 100%;
+    outline: none;
+    font-size: 18px;
+}
+
+input[type="radio"] {
+    width: initial;
+    margin-right: 4px;
+}
+
+input::placeholder {
+    font-size: 16px;
+    font-weight: normal;
+}
+
+button[type="submit"] {
+    padding: 8px 64px;
+    display: block;
+    margin: 0 auto;
+    margin-top: 32px;
+    border-radius: 50px;
+    font-size: 16px;
+    font-weight: bold;
+    background: var(--primary-color);
 }
