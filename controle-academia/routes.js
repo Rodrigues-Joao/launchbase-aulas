@@ -24,6 +24,7 @@ routes.get('/students', (req, res) => {
 
 })
 
+routes.get('/teachers/:id', teachers.show)
 routes.post('/teachers', teachers.post)
 
 
