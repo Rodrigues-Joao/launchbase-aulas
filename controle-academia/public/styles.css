@@ -148,7 +148,8 @@ input::placeholder {
     font-weight: normal;
 }
 
-button[type="submit"] {
+button[type="submit"],
+a.button {
     padding: 8px 64px;
     display: block;
     margin: 0 auto;
@@ -156,5 +157,16 @@ button[type="submit"] {
     border-radius: 50px;
     font-size: 16px;
     font-weight: bold;
+    letter-spacing: 1px;
     background: var(--primary-color);
+}
+
+div.button-edit {
+    display: flex;
+}
+
+a.button {
+    color: black;
+    text-align: center;
+    text-decoration: none;
 }

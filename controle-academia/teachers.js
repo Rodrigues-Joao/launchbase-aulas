@@ -1,5 +1,6 @@
 const fs = require('fs')
 const data = require('./data.json')
+const { age, date, graduation } = require('./utils')
 
 exports.show = function(req, res) {
     const { id } = req.params
@@ -9,44 +10,14 @@ exports.show = function(req, res) {
     if (!foundTeachers)
         return res.send('Professor não encontrado!')
 
-    function real_schooling(schooling) {
-
-        switch (schooling) {
-            case "EMC":
-                return "Ensino Médio Completo"
-                break
-            case "ESC":
-                return "Ensino Superior Completo"
-                break
-            case "MeD":
-                return "Mestrado e Doutorado"
-                break
-        }
-    }
-
-    function age(timestamp) {
-        const today = new Date()
-        const birthDate = new Date(timestamp)
-
-        let age = today.getFullYear() - birthDate.getFullYear()
-        const month = today.getMonth() - birthDate.getMonth()
-
-        if (month < 0 || (month == 0 && today.getDate() < birthDate.getDate()))
-            age = age - 1
-
-        return age
-    }
-
     const teacher = {
         ...foundTeachers,
         age: age(foundTeachers.birth),
-        schooling: real_schooling(foundTeachers.schooling),
+        schooling: graduation(foundTeachers.schooling),
         services: foundTeachers.services.split(','),
-        created_at: ""
+        created_at: new Intl.DateTimeFormat("pt-BR").format(foundTeachers.created_at)
     }
-
     return res.render('./teachers/show', { teacher })
-
 }
 
 exports.post = function(req, res) {
@@ -82,4 +53,19 @@ exports.post = function(req, res) {
 
         })
         // return res.send(req.body)
+}
+
+exports.edit = function(req, res) {
+    const { id } = req.params
+
+    const foundTeachers = data.teachers.find((teacher) => { return teacher.id == id })
+
+    if (!foundTeachers)
+        return res.send('Professor não encontrado!')
+    const teacher = {
+        ...foundTeachers,
+        birth: date(foundTeachers.birth)
+    }
+
+    return res.render('teachers/edit', { teacher })
 }
