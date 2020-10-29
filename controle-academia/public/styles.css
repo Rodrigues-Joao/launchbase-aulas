@@ -159,6 +159,7 @@ a.button {
     font-weight: bold;
     letter-spacing: 1px;
     background: var(--primary-color);
+    cursor: pointer;
 }
 
 div.button-edit {
@@ -169,4 +170,9 @@ a.button {
     color: black;
     text-align: center;
     text-decoration: none;
+}
+
+#form-delete button[type="submit"] {
+    margin-top: 10px;
+    background-color: rgb(250, 21, 21);
 }
