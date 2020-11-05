@@ -16,14 +16,16 @@
                     type="hidden"
                     name="id"
                     value = "{{teacher.id}}">
-                    <button id="button-aolado" type="submit">Salvar</button>
+                <div class="edit-buttons">
+                    <button  type="submit">Salvar</button>
+                    <button form="form-delete" type="submit">Excluir</button>
+                </div>
             </form>
             <form id="form-delete" action="/teachers?_method=DELETE" method="POST">
                 <input 
                     type="hidden"
                     name="id"
                     value = "{{teacher.id}}">
-                <button id="button-aolado" type="submit">Excluir</button>
             </form>
         
     </section>

@@ -1,16 +1,6 @@
 {
   "teachers": [
     {
-      "id": 1,
-      "created_at": 1603931638703,
-      "avatar_url": "https://source.unsplash.com/collection/332741/600x600",
-      "name": "Jose",
-      "birth": -944697600000,
-      "schooling": "EMC",
-      "classes": "EAD",
-      "services": "sadasdasd"
-    },
-    {
       "id": "2",
       "created_at": 1603931854192,
       "avatar_url": "https://source.unsplash.com/collection/332741/600x600",

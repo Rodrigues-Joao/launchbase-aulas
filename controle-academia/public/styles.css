@@ -12,7 +12,7 @@
 
 body {
     font-family: 'Roboto', sans-serif;
-    background-color: var(--primary-color)
+    background-color: var(--primary-color);
 }
 
 header {
@@ -88,6 +88,8 @@ header {
 
 .details {
     padding: 32px;
+    box-sizing: border-box;
+    width: 100%;
 }
 
 .details .item {
@@ -153,7 +155,7 @@ a.button {
     padding: 8px 64px;
     display: block;
     margin: 0 auto;
-    margin-top: 32px;
+    margin-top: 16px;
     border-radius: 50px;
     font-size: 16px;
     font-weight: bold;
@@ -172,7 +174,17 @@ a.button {
     text-decoration: none;
 }
 
-#form-delete button[type="submit"] {
-    margin-top: 10px;
-    background-color: rgb(250, 21, 21);
+.edit-buttons {
+    display: flex;
+}
+
+.edit-buttons button:first-child {
+    padding: 8px 58px;
+    margin-left: 0;
+}
+
+.edit-buttons button:last-child {
+    background-color: red;
+    padding: 8px 58px;
+    margin-right: 0;
 }
