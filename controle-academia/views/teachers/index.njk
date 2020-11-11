@@ -1,37 +1,31 @@
 {% extends "layout.njk" %}
 
 {% block content %}
-<div class="card">
-    <section class="avatar" style="background: url(https://source.unsplash.com/collection/332741/500x500) no-repeat"></section>
-    <section class="details">
-        <h3>Detalhes</h3>
-        <div class="item">
-            <div>Professor</div>
-            <div>Evandro Silva</div>
-        </div>
-        <div class="item">
-            <div>Idade</div>
-            <div>35</div>
-        </div>
-        <div class="item">
-            <div>Escolaridade</div>
-            <div>Mestre</div>
-        </div>
-        <div class="item">
-            <div>Aula</div>
-            <div>EAD</div>
-        </div>
-        <div class="item">
-            <div>Acompanhamento</div>
-            <div>
-                <span>Matemática</span>
-                <span>Química</span>
-            </div>
-        </div>
-        <div class="item">
-            <div>Desde</div>
-            <div>20/02/2020</div>
-        </div>
-    </section>
+<div class="card table-container">
+   <table>
+       <thead>
+           <tr>
+               <th>Teacher</th>
+               <th>Classes</th>
+               <th>Action</th>
+           </tr>
+       </thead>
+       <tbody>
+            {% for teacher in teachers %}
+             
+                <tr>
+                    <td>
+                        <span 
+                            style="background-image: url({{teacher.avatar_url}})">
+                        </span>
+                        {{teacher.name}}
+                        </td>
+                    
+                        <td> <span>{{teacher.services}}</span></td>
+                    <td><a href="/teachers/{{teacher.id}}">ver</a></td>
+                </tr>
+           {% endfor%}
+       </tbody>
+   </table>
 </div>
 {% endblock content %}
