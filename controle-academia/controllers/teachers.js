@@ -1,10 +1,19 @@
 const fs = require('fs')
-const data = require('./data.json')
-const { age, date, graduation } = require('./utils')
+const data = require('../data.json')
+const { age, date, graduation } = require('../utils')
 
 exports.index = function(req, res) {
+    let teachers = new Array();
+    for (let i = 0; i < data.teachers.length; i++) {
 
-    return res.render('teachers/index', { teachers: data.teachers })
+        teachers.push({
+            ...data.teachers[i],
+            services: data.teachers[i].services.split(',')
+        })
+    }
+
+
+    return res.render('teachers/index', { teachers })
 }
 
 exports.show = function(req, res) {
@@ -22,7 +31,14 @@ exports.show = function(req, res) {
         services: foundTeachers.services.split(','),
         created_at: new Intl.DateTimeFormat("pt-BR").format(foundTeachers.created_at)
     }
+
     return res.render('./teachers/show', { teacher })
+}
+
+exports.create = function(req, res) {
+
+    return res.render('teachers/create')
+
 }
 
 exports.post = function(req, res) {

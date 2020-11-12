@@ -114,10 +114,11 @@ header {
     font-size: 18px;
 }
 
-.details .item div:nth-child(2) span {
+.details .item div:nth-child(2) span,
+.span-classes {
     background-color: var(--secondary-color);
     border-radius: 20px;
-    padding: 4px 16px;
+    padding: 8px 16px;
     margin-right: 4px;
     margin-top: 8px;
     display: inline-block;
@@ -207,6 +208,10 @@ a.button {
     text-align: center;
 }
 
+.table-container thead tr th:nth-child(2) {
+    width: 50%;
+}
+
 .table-container td,
 .table-container th {
     text-align: center;
@@ -224,7 +229,7 @@ a.button {
     border-bottom: none;
 }
 
-.table-container tbody tr td:first-child {
+.table-container tbody tr td:first-child div {
     display: grid;
     grid-template-columns: 64px 1fr;
     align-items: center;
@@ -248,4 +253,8 @@ a.button {
     color: white;
     font-size: 10px;
     border-radius: 10px;
+}
+
+.table-container tbody tr td:nth-child(2) {
+    text-align: start;
 }
