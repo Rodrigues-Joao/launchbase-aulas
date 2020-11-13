@@ -245,7 +245,8 @@ a.button {
     border: 2px solid white;
 }
 
-.table-container tbody tr td:last-child a {
+.table-container tbody tr td:last-child a,
+.table-container>a {
     background-color: var(--primary-color);
     padding: 8px 16px;
     text-decoration: none;
@@ -255,6 +256,18 @@ a.button {
     border-radius: 10px;
 }
 
+.table-container>a {
+    margin-bottom: 10px;
+    display: inline-block;
+}
+
 .table-container tbody tr td:nth-child(2) {
     text-align: start;
+}
+
+
+/*-------- table estudantes ----------*/
+
+.table-container tbody tr td:nth-child(2) .workload {
+    text-align: center;
 }

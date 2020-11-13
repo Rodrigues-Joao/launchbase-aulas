@@ -7,19 +7,30 @@
                     type="url" 
                     name="avatar_url" 
                     placeholder="http://"
-                    value="{{teacher.avatar_url}}">
+                    value="{{student.avatar_url}}">
             </div>
         </div>
 
         <div class="item">
-            <div>Professor</div>
+            <div>Nome</div>
             <div>
                 <input 
                     required
                     type="text" 
                     name="name" 
-                    placeholder="Nome do professor"
-                    value="{{teacher.name}}">
+                    placeholder="Nome do aluno"
+                    value="{{student.name}}">
+                
+            </div>
+        </div>
+        <div class="item">
+            <div>Email</div>
+            <div>
+                <input 
+                    required
+                    type="email" 
+                    name="email" 
+                    value="{{student.email}}">
                 
             </div>
         </div>
@@ -31,71 +42,79 @@
                     required
                     type="date" 
                     name="birth"
-                    value="{{teacher.birth}}"
+                    value="{{student.birth}}"
                     >
             </div>
         </div>
 
         <div class="item">
-            <div>Escolaridade</div>
+            <div>Ano escolar</div>
             <div>
-                <select name="schooling">
+                <select name="school_year">
                     <option 
-                        value="EMC" 
-                        {% if teacher.schooling == "EMC" %}
+                        value="5EF" 
+                        {% if student.school_year == "5EF" %}
                             selected
                         {% endif %}>
-                        Ensino Médio Completo
+                        5º Ano do fundamental
                     </option> 
                     <option 
-                        value="ESC"{% if teacher.schooling == "ESC" %}
+                        value="6EF"{% if student.school_year == "6EF" %}
                             selected
                         {% endif %}>
-                        Ensino Superior Completo
+                        6º Ano do fundamental
                     </option>
                     <option  
-                        value="MeD" {% if teacher.schooling == "MeD" %}
+                        value="7EF" {% if student.school_year == "7EF" %}
                             selected
                         {% endif %}>
-                        Mestrado e Doutorado
+                        7º Ano do fundamental
+                    </option><option 
+                        value="8EF" 
+                        {% if student.school_year == "8EF" %}
+                            selected
+                        {% endif %}>
+                        8º Ano do fundamental
+                    </option> 
+                    <option 
+                        value="9EF"{% if student.school_year == "9EF" %}
+                            selected
+                        {% endif %}>
+                        9º Ano do fundamental
+                    </option>
+                    <option  
+                        value="1EM" {% if student.school_year == "1EM" %}
+                            selected
+                        {% endif %}>
+                        1º Ano do ensino médio
+                    </option>
+                    <option  
+                        value="2EM" {% if student.school_year == "2EM" %}
+                            selected
+                        {% endif %}>
+                        2º Ano do ensino médio
+                    </option>
+                    <option  
+                        value="3EM" {% if student.school_year == "3EM" %}
+                            selected
+                        {% endif %}>
+                        3º Ano do ensino médio
                     </option>
                 </select>
             </div>
         </div>
+        <div class="item">
+            <div>Carga horária semanal</div>
+            <div>
+                <input 
+                    required
+                    type="number" 
+                    name="workload"
+                    value="{{student.workload}}"
+                    placeholder="0"
+                    >
+            </div>
+        </div>
 
-        <div class="item">
-            <div>Aula</div>
-            <div>
-                <span> 
-                    <input 
-                        type="radio" 
-                        name="classes" 
-                        value="Presencial" 
-                        {% if teacher.classes == "Presencial" %}
-                            checked
-                        {% endif %}> 
-                    Presencial
-                </span>
-                <span>  
-                    <input 
-                        type="radio" 
-                        name="classes"
-                        value="EAD"
-                        {% if teacher.classes == "EAD" %}
-                            checked
-                        {% endif %}ecked> 
-                    À distância
-                </span>
-            </div>
-        </div>
-        <div class="item">
-            <div>Área de atuação</div>
-            <div>
-                 <input 
-                    type="text" 
-                    name="services" 
-                    placeholder="Separe as matérias por vírgula"
-                    value="{{teacher.services}}">
-            </div>
-        </div>
+        
        

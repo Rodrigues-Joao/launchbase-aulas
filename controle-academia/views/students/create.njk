@@ -1,11 +1,11 @@
 {% extends "layout.njk" %}
 
 {% block content %}
-<form class="card" method="POST" action="/teachers">
+<form class="card" method="POST" action="/students">
     <section class="avatar" style="background: url(https://source.unsplash.com/collection/332741/600x600) no-repeat"></section>
     <section class="details">
-        <h3>Novo Professor</h3>
-        {% include 'teachers/fields.njk'%}
+        <h3>Novo Aluno</h3>
+        {% include 'students/fields.njk'%}
          <button type="submit">Salvar</button>
     </section>
 </form>

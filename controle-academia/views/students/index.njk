@@ -2,35 +2,34 @@
 
 {% block content %}
 <div class="card table-container">
+    <a href="/students/create">Novo</a>
    <table>
        <thead>
            <tr>
-               <th>Teacher</th>
-               <th>Classes</th>
+               <th>Estudantes</th>
+               <th>Carga Horária</th>
                <th>Action</th>
            </tr>
        </thead>
        <tbody>
-            {% for teacher in teachers %}
+            {% for student in students %}
                 <tr>
                     <td>
                         <div>
                             <span 
-                                style="background-image: url({{teacher.avatar_url}})">
+                                style="background-image: url({{student.avatar_url}})">
                             </span>
-                            {{teacher.name}}
+                            {{student.name}}
                         </div>
                     </td>
-                    <td> 
-                        <div>
-
-                        {% for service in teacher.services %}
-                            <span class="span-classes">{{service}}</span>
-                        {% endfor %}
+                    <td > 
+                        <div class="workload">
+                            <span class="span-classes">{{student.workload}}</span>
+                        
                         </div>
                     </td>
                     <td>
-                        <a href="/teachers/{{teacher.id}}">ver</a>
+                        <a href="/students/{{student.id}}">ver</a>
                     </td>
                 </tr>
            {% endfor%}

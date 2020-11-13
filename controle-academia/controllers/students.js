@@ -1,6 +1,6 @@
 const fs = require('fs')
 const data = require('../data.json')
-const { age, date, graduation } = require('../utils')
+const { date, graduation, grade } = require('../utils')
 
 exports.index = function(req, res) {
     let students = new Array();
@@ -24,10 +24,11 @@ exports.show = function(req, res) {
     if (!foundStudents)
         return res.send('Professor não encontrado!')
 
+
     const student = {
         ...foundStudents,
-        age: age(foundStudents.birth),
-        schooling: graduation(foundStudents.schooling),
+        birth: date(foundStudents.birth).bithDay,
+        school_year: grade(foundStudents.school_year),
     }
 
     return res.render('./students/show', { student })
@@ -46,31 +47,29 @@ exports.post = function(req, res) {
             return res.send("Por favor, preencha todos os campos")
     }
 
-    let { avatar_url, name, birth, schooling, classes, services } = req.body
+
 
     birth = Date.parse(req.body.birth)
-    const created_at = Date.now()
-    const id = Number(data.students.length + 1)
+    let id = 1
+    const lastStudent = data.students[data.students.length - 1]
+
+    if (lastStudent) {
+        id = lastStudent.id + 1
+    }
 
     data.students.push({
         id,
-        created_at,
-        avatar_url,
-        name,
-        birth,
-        schooling,
-        classes
-
+        ...req.body,
+        birth
     })
     fs.writeFile("data.json", JSON.stringify(data, null, 2), function(err) {
 
-            if (err)
-                return res.send("Erro ao escrever arquivo")
+        if (err)
+            return res.send("Erro ao escrever arquivo")
 
-            return res.redirect("/students")
+        return res.redirect("/students")
 
-        })
-        // return res.send(req.body)
+    })
 }
 
 exports.edit = function(req, res) {
@@ -82,7 +81,7 @@ exports.edit = function(req, res) {
         return res.send('Professor não encontrado!')
     const student = {
         ...foundStudents,
-        birth: date(foundStudents.birth)
+        birth: date(foundStudents.birth).iso
     }
 
     return res.render('students/edit', { student })
@@ -99,7 +98,7 @@ exports.put = function(req, res) {
     })
 
     if (!foundStudents)
-        return res.send('Professor não encontrado!')
+        return res.send('Estudante não encontrado!')
 
     const student = {
         ...foundStudents,

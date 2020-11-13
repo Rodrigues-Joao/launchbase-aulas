@@ -5,27 +5,27 @@
 <div class="card">
     <section 
         class="avatar" 
-        style="background: url({{teacher.avatar_url}}) no-repeat">
+        style="background: url({{student.avatar_url}}) no-repeat">
     </section>
     <section class="details">
-        <h3>Editar Professor</h3>
+        <h3>Editar Estudante</h3>
         
-            <form  method="POST" action="/teachers?_method=PUT">
-                {% include 'teachers/fields.njk'%}
+            <form  method="POST" action="/students?_method=PUT">
+                {% include 'students/fields.njk'%}
                 <input 
                     type="hidden"
                     name="id"
-                    value = "{{teacher.id}}">
+                    value = "{{student.id}}">
                 <div class="edit-buttons">
                     <button  type="submit">Salvar</button>
                     <button form="form-delete" type="submit">Excluir</button>
                 </div>
             </form>
-            <form id="form-delete" action="/teachers?_method=DELETE" method="POST">
+            <form id="form-delete" action="/students?_method=DELETE" method="POST">
                 <input 
                     type="hidden"
                     name="id"
-                    value = "{{teacher.id}}">
+                    value = "{{student.id}}">
             </form>
         
     </section>

@@ -27,11 +27,45 @@ module.exports = {
     },
     date: function(timestamp) {
         const date = new Date(timestamp)
-
         const year = date.getUTCFullYear()
         const month = `0${date.getUTCMonth() + 1}`.slice(-2)
         const day = `0${date.getUTCDate()}`.slice(-2)
 
-        return `${year}-${month}-${day}`
+
+        return {
+            day,
+            month,
+            year,
+            iso: `${year}-${month}-${day}`,
+            bithDay: `${day}/${month}`
+        }
+    },
+    grade: function(school_year) {
+        switch (school_year) {
+            case "5EF":
+                return "5º Ano do fundamental"
+                break
+            case "6EF":
+                return "6º Ano do fundamental"
+                break
+            case "7EF":
+                return "7º Ano do fundamental"
+                break
+            case "8EF":
+                return "8º Ano do fundamental"
+                break
+            case "9EF":
+                return "9º Ano do fundamental"
+                break
+            case "1EM":
+                return "1º Ano do ensino médio"
+                break
+            case "2EM":
+                return "2º Ano do ensino médio"
+                break
+            case "3EM":
+                return "3º Ano do ensino médio"
+                break
+        }
     }
 }
