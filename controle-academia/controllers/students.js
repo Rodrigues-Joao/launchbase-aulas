@@ -4,16 +4,15 @@ const { date, graduation, grade } = require('../utils')
 
 exports.index = function(req, res) {
     let students = new Array();
-    /*for (let i = 0; i < data.students.length; i++) {
-
+    for (let i = 0; i < data.students.length; i++) {
         students.push({
             ...data.students[i],
-            services: data.students[i].services.split(',')
+            school_year: grade(data.students[i].school_year)
         })
-    }*/
+    }
 
 
-    return res.render('students/index', { students: data.students })
+    return res.render('students/index', { students })
 }
 
 exports.show = function(req, res) {

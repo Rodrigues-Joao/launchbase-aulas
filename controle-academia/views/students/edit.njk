@@ -18,7 +18,7 @@
                     value = "{{student.id}}">
                 <div class="edit-buttons">
                     <button  type="submit">Salvar</button>
-                    <button form="form-delete" type="submit">Excluir</button>
+                     <button form="form-delete" type="submit">Excluir</button>
                 </div>
             </form>
             <form id="form-delete" action="/students?_method=DELETE" method="POST">
@@ -27,8 +27,7 @@
                     name="id"
                     value = "{{student.id}}">
             </form>
-        
     </section>
-
 </div>
+{% include '../confirm.njk'%}
 {% endblock content %}

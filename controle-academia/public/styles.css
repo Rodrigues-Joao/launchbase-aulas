@@ -62,6 +62,10 @@ header {
     transition: width 300ms ease-in-out 100ms;
 }
 
+.avatar {
+    background-position: center !important;
+}
+
 .card {
     background-color: white;
     width: 700px;
@@ -208,10 +212,6 @@ a.button {
     text-align: center;
 }
 
-.table-container thead tr th:nth-child(2) {
-    width: 50%;
-}
-
 .table-container td,
 .table-container th {
     text-align: center;
@@ -265,9 +265,7 @@ a.button {
     text-align: start;
 }
 
-
-/*-------- table estudantes ----------*/
-
-.table-container tbody tr td:nth-child(2) .workload {
-    text-align: center;
+.table-container tbody tr td:nth-child(2),
+.table-container tbody tr .school-year {
+    text-align: start;
 }
