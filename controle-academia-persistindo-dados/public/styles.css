@@ -1,0 +1,271 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,700;1,300;1,700&display=swap');
+:root {
+    --primary-color: rgb(82, 110, 136);
+    --secondary-color: rgb(255, 253, 190);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--primary-color);
+}
+
+header {
+    background-color: rgba(0, 0, 0, 0.500);
+    color: white;
+    width: 100%;
+    padding: 32px;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.links {
+    font-size: 22px;
+}
+
+.links a+a {
+    margin-left: 32px;
+}
+
+.links a {
+    text-decoration: none;
+    color: white;
+    position: relative;
+}
+
+.links a.active {
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.links a:hover {
+    color: var(--primary-color);
+}
+
+.links a::after {
+    content: "";
+    width: 0;
+    height: 2px;
+    background-color: var(--primary-color);
+    position: absolute;
+    left: 0;
+    bottom: 0;
+}
+
+.links a:hover::after {
+    width: 100%;
+    transition: width 300ms ease-in-out 100ms;
+}
+
+.avatar {
+    background-position: center !important;
+}
+
+.card {
+    background-color: white;
+    width: 700px;
+    min-height: 400px;
+    margin: 45px auto;
+    display: grid;
+    grid-template-columns: 40% 1fr;
+    animation: up 300ms ease-in-out;
+    box-shadow: 10px 10px 20px -5px rgba(0, 0, 0, 0.6);
+}
+
+@keyframes up {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+
+/*---- Details -----*/
+
+.details {
+    padding: 32px;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.details .item {
+    border-top: 1px solid rgba(0, 0, 0, 0.3);
+    padding: 8px 0;
+}
+
+.details .item:first-child,
+.details .item:nth-child(2) {
+    border-top: none;
+}
+
+.details h3,
+.details .item div:nth-child(1) {
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 26px;
+}
+
+.details .item div:nth-child(2) {
+    font-weight: normal;
+    font-size: 18px;
+}
+
+.details .item div:nth-child(2) span,
+.span-classes {
+    background-color: var(--secondary-color);
+    border-radius: 20px;
+    padding: 8px 16px;
+    margin-right: 4px;
+    margin-top: 8px;
+    display: inline-block;
+    font-weight: bold;
+    color: rgb(65, 65, 65);
+}
+
+.details h3 {
+    text-transform: uppercase;
+    color: var(--primary-color);
+}
+
+
+/*---- Form -----*/
+
+select,
+input {
+    width: 100%;
+    outline: none;
+    font-size: 18px;
+}
+
+input[type="radio"] {
+    width: initial;
+    margin-right: 4px;
+}
+
+input::placeholder {
+    font-size: 16px;
+    font-weight: normal;
+}
+
+button[type="submit"],
+a.button {
+    padding: 8px 64px;
+    display: block;
+    margin: 0 auto;
+    margin-top: 16px;
+    border-radius: 50px;
+    font-size: 16px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    background: var(--primary-color);
+    cursor: pointer;
+}
+
+div.button-edit {
+    display: flex;
+}
+
+a.button {
+    color: black;
+    text-align: center;
+    text-decoration: none;
+}
+
+.edit-buttons {
+    display: flex;
+}
+
+.edit-buttons button:first-child {
+    padding: 8px 58px;
+    margin-left: 0;
+}
+
+.edit-buttons button:last-child {
+    background-color: red;
+    padding: 8px 58px;
+    margin-right: 0;
+}
+
+
+/*---- Index -----*/
+
+.table-container {
+    display: block;
+    padding: 40px;
+    box-sizing: border-box;
+}
+
+.table-container table {
+    width: 100%;
+    border-spacing: 0;
+}
+
+.table-container thead tr th {
+    text-align: center;
+}
+
+.table-container td,
+.table-container th {
+    text-align: center;
+    padding: 14px;
+    border-bottom: 1px solid #d9d9d9;
+}
+
+.table-container th {
+    text-transform: uppercase;
+    color: #777777;
+    font-size: 14px;
+}
+
+.table-container tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.table-container tbody tr td:first-child div {
+    display: grid;
+    grid-template-columns: 64px 1fr;
+    align-items: center;
+}
+
+.table-container tbody tr td:first-child span {
+    width: 40px;
+    height: 40px;
+    background-position: center;
+    background-size: cover;
+    border-radius: 50%;
+    box-shadow: 3px 1px 6px -4px black;
+    border: 2px solid white;
+}
+
+.table-container tbody tr td:last-child a,
+.table-container>a {
+    background-color: var(--primary-color);
+    padding: 8px 16px;
+    text-decoration: none;
+    text-transform: uppercase;
+    color: white;
+    font-size: 10px;
+    border-radius: 10px;
+}
+
+.table-container>a {
+    margin-bottom: 10px;
+    display: inline-block;
+}
+
+.table-container tbody tr td:nth-child(2) {
+    text-align: start;
+}
+
+.table-container tbody tr td:nth-child(2),
+.table-container tbody tr .school-year {
+    text-align: start;
+}
