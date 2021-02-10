@@ -37,7 +37,8 @@ module.exports = {
             month,
             year,
             iso: `${year}-${month}-${day}`,
-            bithDay: `${day}/${month}`
+            bithDay: `${day}/${month}`,
+            format: `${day}/${month}/${year}`
         }
     },
     grade: function(school_year) {

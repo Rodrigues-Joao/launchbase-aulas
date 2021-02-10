@@ -15,16 +15,16 @@
         </div>
         <div class="item">
             <div>Escolaridade</div>
-            <div>{{teacher.schooling}}</div>
+            <div>{{teacher.education_level}}</div>
         </div>
         <div class="item">
             <div>Aula</div>
-            <div>{{teacher.classes}}</div>
+            <div>{{teacher.class_type}}</div>
         </div>
         <div class="item">
             <div>Acompanhamento</div>
             <div>
-                {% for service in teacher.services%} 
+                {% for service in teacher.subjects_taught%} 
                 <span>{{service}}</span>
                 {% endfor %}
                
