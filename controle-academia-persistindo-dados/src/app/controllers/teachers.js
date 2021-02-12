@@ -18,17 +18,16 @@ module.exports = {
     },
     show(req, res) {
         const { id } = req.params
-        teacher.find(id, (found_teacher) => {
-            if (!found_teacher)
-                res.send("Instructor Not Found!")
-            const teacher = {
-                ...found_teacher,
-                age: age(found_teacher.birth_date),
-                schooling: graduation(found_teacher.schooling),
-                subjects_taught: found_teacher.subjects_taught.split(','),
-                created_at: date(found_teacher.created_at).format
+        teacher.find(id, (teacher) => {
+            if (!teacher)
+                res.send("Teacher Not Found!")
 
-            }
+            teacher.age = age(teacher.birth_date)
+            teacher.education_level = graduation(teacher.education_level)
+            teacher.subjects_taught = teacher.subjects_taught.split(',')
+            teacher.created_at = date(teacher.created_at).format
+
+
             return res.render(`teachers/show`, { teacher })
         })
 
@@ -51,20 +50,16 @@ module.exports = {
     },
     edit(req, res) {
         const { id } = req.params
+        teacher.find(id, (teacher) => {
+            if (!teacher)
+                res.send("Teacher Not Found!")
 
-        const query = `SELECT * FROM teachers WHERE id IN (${id})`
-        db.query(query, (err, results) => {
-            if (err) {
-                return res.send('Database error!')
-            }
-            const teacher = {
-                ...results.rows[0],
-                birth: date(results.rows[0].birth).iso
+            teacher.birth_date = date(teacher.birth_date).iso
 
-            }
 
-            return res.render('teachers/edit', { teacher })
+            return res.render(`teachers/edit`, { teacher })
         })
+
 
     },
     put(req, res) {
@@ -74,9 +69,13 @@ module.exports = {
                 return res.send("Por favor, preencha todos os campos")
         }
 
-        let { avatar_url, name, birth, school_year, workload } = req.body
+        teacher.update(req.body, () => {
+            return res.redirect(`/teachers/${req.body.id}`)
+        })
     },
     delete(req, res) {
-
+        teacher.delete(req.body.id, () => {
+            return res.redirect(`/teachers`)
+        })
     }
 }
