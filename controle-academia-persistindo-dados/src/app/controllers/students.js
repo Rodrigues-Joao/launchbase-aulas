@@ -1,11 +1,11 @@
 const { age, date, grade } = require('../../lib/utils')
 const db = require('../../config/db')
-const student = require('../models/student')
+const Student = require('../models/student')
 
 module.exports = {
     index(req, res) {
         let Correct_students = new Array();
-        student.all((students) => {
+        Student.all((students) => {
             for (row of students) {
                 Correct_students.push({
                     ...row,
@@ -18,7 +18,7 @@ module.exports = {
     },
     show(req, res) {
         const { id } = req.params
-        student.find(id, (student) => {
+        Student.find(id, (student) => {
             if (!student) res.send("Student Not Found!")
 
             student.birth_date = date(student.birth_date).bithDay
@@ -28,7 +28,10 @@ module.exports = {
         })
     },
     create(req, res) {
-        return res.render('students/create')
+        Student.teachersSelectedOptions((options) => {
+
+            return res.render('students/create', { teacherOptions: options })
+        })
     },
     post(req, res) {
         const keys = Object.keys(req.body)
@@ -36,19 +39,21 @@ module.exports = {
             if (req.body[key] == "")
                 return res.send("Por favor, preencha todos os campos")
         }
-        student.create(req.body, (student) => {
+        Student.create(req.body, (student) => {
             // return res.redirect(`/students/${student.id}`)
             return res.redirect(`/students`)
         })
     },
     edit(req, res) {
         const { id } = req.params
-        student.find(id, (student) => {
+        Student.find(id, (student) => {
             if (!student) res.send("Student Not Found!")
 
             student.birth_date = date(student.birth_date).iso
+            Student.teachersSelectedOptions((options) => {
 
-            return res.render(`students/edit`, { student })
+                return res.render('students/edit', { student, teacherOptions: options })
+            })
         })
     },
     put(req, res) {
@@ -58,12 +63,12 @@ module.exports = {
                 return res.send("Por favor, preencha todos os campos")
         }
 
-        student.update(req.body, () => {
+        Student.update(req.body, () => {
             return res.redirect(`/students/${req.body.id}`)
         })
     },
     delete(req, res) {
-        student.delete(req.body.id, () => {
+        Student.delete(req.body.id, () => {
             return res.redirect(`/students`)
         })
     }

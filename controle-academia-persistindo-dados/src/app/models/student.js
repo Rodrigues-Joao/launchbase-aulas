@@ -19,8 +19,9 @@ module.exports = {
                 email,
                 birth_date,
                 school_year,
-                workload
-                ) VALUES ($1,$2,$3,$4,$5, $6) 
+                workload,
+                teacher_id
+                ) VALUES ($1,$2,$3,$4,$5, $6, $7) 
                 RETURNING id
                 `
         const values = [
@@ -29,7 +30,8 @@ module.exports = {
             data.email,
             date(data.birth_date).iso,
             data.school_year,
-            data.workload
+            data.workload,
+            data.teacher
 
         ]
         db.query(query, values, (err, results) => {
@@ -39,7 +41,12 @@ module.exports = {
         })
     },
     find(id, callback) {
-        const query = `SELECT * FROM students WHERE id IN (${id})`
+        const query = `
+            SELECT students.*, teachers.name AS teacher_name 
+            FROM students 
+            LEFT JOIN teachers ON (students.teacher_id = teachers.id)
+            WHERE students.id IN (${id})
+            `
         db.query(query, (err, results) => {
             if (err) throw `Database eroor = ${err}`
 
@@ -54,8 +61,10 @@ module.exports = {
             email= $3,
             birth_date= $4,
             school_year= $5,
-            workload= $6
-        WHERE id = $7
+            workload= $6,
+            teacher_id=$7
+
+        WHERE id = $8
         `
         const values = [
             data.avatar_url,
@@ -64,6 +73,7 @@ module.exports = {
             date(data.birth_date).iso,
             data.school_year,
             data.workload,
+            data.teacher,
             data.id
 
         ]
@@ -79,6 +89,14 @@ module.exports = {
             if (err) throw `Database eroor = ${err}`
 
             callback()
+        })
+    },
+    teachersSelectedOptions(callback) {
+        const query = `SELECT name, id FROM teachers ORDER BY name ASC`
+        db.query(query, (err, results) => {
+            if (err) throw `Database eroor = ${err}`
+
+            callback(results.rows)
         })
     }
 }
