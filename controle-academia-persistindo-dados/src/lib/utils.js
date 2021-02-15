@@ -68,5 +68,15 @@ module.exports = {
                 return "3º Ano do ensino médio"
                 break
         }
+    },
+    CorrectedSubjects_taught(teachers) {
+        let Correct_teachers = new Array();
+        for (row of teachers) {
+            Correct_teachers.push({
+                ...row,
+                subjects_taught: row.subjects_taught.split(',')
+            })
+        }
+        return Correct_teachers
     }
 }

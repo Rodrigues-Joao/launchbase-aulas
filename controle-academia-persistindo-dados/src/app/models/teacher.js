@@ -53,6 +53,22 @@ module.exports = {
             callback(results.rows[0])
         })
     },
+    findBy(filter, callback) {
+        const query = `
+            SELECT teachers.*, COUNT (students) AS total_students
+            FROM teachers
+            LEFT JOIN students ON (students.teacher_id = teachers.id)
+            WHERE teachers.name ILIKE '%${filter}%'
+            OR teachers.subjects_taught ILIKE '%${filter}%'
+            GROUP BY teachers.id 
+            ORDER BY total_students DESC
+            `
+        db.query(query, (err, results) => {
+            if (err) throw `Database eroor = ${err}`
+
+            callback(results.rows)
+        })
+    },
     update(data, callback) {
         const query = `
         UPDATE teachers SET
@@ -86,6 +102,32 @@ module.exports = {
             if (err) throw `Database eroor = ${err}`
 
             callback()
+        })
+    },
+    paginate(params) {
+        let { limit, offset, callback, filter } = params
+
+        let query = `
+            SELECT teachers.*, COUNT (students) AS total_students
+            FROM teachers
+            LEFT JOIN students ON (students.teacher_id = teachers.id)
+        `
+        if (filter) {
+            query = `${query}
+                WHERE teachers.name ILIKE '%${filter}%'
+                OR teachers.subjects_taught ILIKE '%${filter}%'
+            `
+        }
+        query = `${query}
+            GROUP BY teachers.id 
+            ORDER BY total_students DESC
+            LIMIT ${limit} OFFSET ${offset}
+        `
+
+        db.query(query, (err, results) => {
+            if (err) throw `Database eroor = ${err}`
+
+            callback(results.rows)
         })
     }
 }
