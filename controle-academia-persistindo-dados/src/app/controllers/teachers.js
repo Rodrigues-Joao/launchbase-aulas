@@ -7,8 +7,9 @@ module.exports = {
         let { filter, limit, page } = req.query
 
         page = page || 1
-        limit = limit || 5
-        let offset = limit * (page - 1)
+        limit = limit || 2
+        let offset = limit * (page - 1),
+            pagination
 
         const params = {
             filter,
@@ -16,19 +17,18 @@ module.exports = {
             limit,
             offset,
             callback(teachers) {
-                return res.render(`teachers/index`, { teachers: CorrectedSubjects_taught(teachers) })
+                console.log(teachers)
+                if (teachers.length > 0) {
+                    pagination = {
+                        page,
+                        total: Math.ceil(teachers[0].total / limit)
+                    }
+                }
+                return res.render(`teachers/index`, { teachers: CorrectedSubjects_taught(teachers), pagination, filter })
             }
         }
         Teacher.paginate(params)
-            //  if (!filter) {
-            //      Teacher.all((teachers) => {
-            //          return res.render(`teachers/index`, { teachers: CorrectedSubjects_taught(teachers) })
-            //      })
-            //  } else {
-            //      Teacher.findBy(filter, (teachers) => {
-            //          return res.render(`teachers/index`, { teachers: CorrectedSubjects_taught(teachers), filter })
-            //      })
-            //  }
+
 
     },
     show(req, res) {
