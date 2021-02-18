@@ -282,7 +282,8 @@ a.button {
     display: grid;
     grid-template-columns: 1fr 1fr;
     align-items: center;
-    margin-bottom: 32px;
+    align-self: start;
+    margin: 0;
 }
 
 .table-container .header form button,
@@ -308,4 +309,30 @@ a.button {
     border: 1px solid #777777;
     box-sizing: border-box;
     padding: 4px 8px;
+}
+
+
+/*---- pagination -----*/
+
+.table-container {
+    display: grid;
+    grid-template: 64px 1fr 16px / 1fr;
+}
+
+.table-container .pagination {
+    margin: 0;
+    align-self: end;
+    justify-self: center;
+}
+
+.pagination a,
+.pagination span {
+    color: var(--primary-color);
+    text-decoration: none;
+    margin-right: 16px;
+}
+
+.pagination a:hover {
+    filter: brightness(0.3);
+    border-bottom: 1px solid var(--primary-color);
 }

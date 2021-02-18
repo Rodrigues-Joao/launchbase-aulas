@@ -1,4 +1,4 @@
-const { age, date, graduation, CorrectedSubjects_taught } = require('../../lib/utils')
+const { age, date, graduation, correctedSubjects_taught } = require('../../lib/utils')
 const db = require('../../config/db')
 const Teacher = require('../models/teacher')
 
@@ -17,14 +17,13 @@ module.exports = {
             limit,
             offset,
             callback(teachers) {
-                console.log(teachers)
                 if (teachers.length > 0) {
                     pagination = {
                         page,
                         total: Math.ceil(teachers[0].total / limit)
                     }
                 }
-                return res.render(`teachers/index`, { teachers: CorrectedSubjects_taught(teachers), pagination, filter })
+                return res.render(`teachers/index`, { teachers: correctedSubjects_taught(teachers), pagination, filter })
             }
         }
         Teacher.paginate(params)

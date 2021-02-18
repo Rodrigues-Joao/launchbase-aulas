@@ -1,3 +1,4 @@
+const { grade } = require('./utils')
 module.exports = {
     age: function(timestamp) {
         const today = new Date()
@@ -69,8 +70,8 @@ module.exports = {
                 break
         }
     },
-    CorrectedSubjects_taught(teachers) {
-        let Correct_teachers = new Array();
+    correctedSubjects_taught(teachers) {
+        let Correct_teachers = new Array()
         for (row of teachers) {
             Correct_teachers.push({
                 ...row,
@@ -79,4 +80,5 @@ module.exports = {
         }
         return Correct_teachers
     }
+
 }
