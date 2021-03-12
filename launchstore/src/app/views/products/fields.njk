@@ -16,13 +16,13 @@
 </div>
 
 <div class="item">
-    <div>Nome</div>
+    <div>Nome do produto</div>
     <div>
         <input 
             required
             type="text" 
             name="name" 
-            placeholder="Digite o título do anúncio"
+            placeholder="Digite o nome do produto"
             value="{{product.name}}">
     </div>
 </div>
@@ -30,9 +30,7 @@
 <div class="item">
     <div>Descrição</div>
     <div>
-        <textarea name="description">
-            {{product.description}}
-        </textarea>
+        <textarea name="description">{{product.description}}</textarea>
     </div>
 </div>
 
@@ -45,8 +43,9 @@
             required
             type="text" 
             name="price" 
-            placeholder="Preço do produto"
-            value="{{product.price}}">
+            value="{{product.price}}R$ 0,00"
+            onkeydown="Mask.apply(this,'formatBRL')"
+            >
     </div>
     {% if product.old_price %}
         <input type="hidden" name="old_price" value={{product.old_price}}>
