@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
 :root {
     --primary-color: #fd951f;
-    --secondary-color: #1fdcfd;
+    --secondary-color: #1f48fd;
 }
 
 * {
@@ -49,6 +49,22 @@ body {
 
 .button:hover {
     background-color: #d87e18;
+}
+
+.button.edit {
+    background-color: var(--secondary-color);
+}
+
+.button.delete {
+    background-color: lightgray;
+}
+
+.button.edit:hover {
+    background-color: #0726b3;
+}
+
+.button.delete:hover {
+    background-color: rgb(221, 56, 56);
 }
 
 
@@ -186,6 +202,17 @@ form .item select {
 
 form .item textarea {
     min-height: 150px;
+}
+
+form .item span {
+    background-color: var(--primary-color);
+    border-radius: 20px;
+    padding: 8px 16px;
+    margin-right: 4px;
+    margin-top: 8px;
+    display: inline-block;
+    font-weight: bold;
+    color: white;
 }
 
 form .fields {

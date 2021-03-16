@@ -9,6 +9,8 @@ routes.get('/', (req, res) => {
 routes.get('/products/create', ProdcutController.create)
 routes.get('/products/:id/edit', ProdcutController.edit)
 routes.post('/products', ProdcutController.post)
+routes.put('/products', ProdcutController.put)
+routes.delete('/products', ProdcutController.delete)
 
 
 /*----- Alias -----*/
