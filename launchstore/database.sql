@@ -33,3 +33,28 @@ CREATE TABLE "files" (
 ALTER TABLE "products" ADD FOREIGN KEY ("category_id") REFERENCES "categories" ("id");
 
 ALTER TABLE "files" ADD FOREIGN KEY ("product_id") REFERENCES "products" ("id");
+
+
+/* 
+Função para atualização da data no campo update_at
+
+CREATE OR REPLACE FUNCTION public.trigger_set_timestamp()
+RETURNS trigger
+LANGUAGE plpgsql
+AS $function$
+BEGIN
+	NEW.update_at = NOW();
+  RETURN NEW;
+END;
+$function$
+
+
+TRIGGER 
+
+CREATE TRIGGER set_timestamp
+BEFORE UPDATE ON products
+FOR EACH ROW
+EXECUTE PROCEDURE trigger_set_timestamp();
+
+
+*/
