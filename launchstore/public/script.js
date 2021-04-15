@@ -58,12 +58,12 @@ const PhotosUpload = {
             alert('Você atingiu o limite máximo de fotos')
             event.preventDefault()
             return true
-        } else if (totalPhotos > uploadLimit) {
-            alert(`Você só pode adicionar mais ${qtdPhotos} foto(s)`)
-            event.preventDefault()
-            return true
         } else if (fileList.length > uploadLimit) {
             alert(`Envie no máximo ${uploadLimit} fotos`)
+            event.preventDefault()
+            return true
+        } else if (totalPhotos > uploadLimit) {
+            alert(`Você só pode adicionar mais ${qtdPhotos} foto(s)`)
             event.preventDefault()
             return true
         }

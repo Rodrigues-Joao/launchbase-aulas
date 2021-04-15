@@ -1,6 +1,18 @@
 const db = require('../../config/db')
 
 module.exports = {
+    findAll() {
+        const query = `
+            SELECT * 
+            FROM products
+            ORDER BY update_at DESC
+        `
+        try {
+            return db.query(query)
+        } catch (err) {
+            console.error(err)
+        }
+    },
     create(data) {
         const query = `
             INSERT INTO products (
@@ -72,6 +84,10 @@ module.exports = {
         const query = `
             SELECT * FROM files WHERE product_id = ${id}
         `
-        return db.query(query)
+        try {
+            return db.query(query)
+        } catch (err) {
+            console.error(err)
+        }
     }
 }
