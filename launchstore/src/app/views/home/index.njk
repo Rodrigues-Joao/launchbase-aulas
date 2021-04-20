@@ -1,29 +1,10 @@
 {% extends "layout.njk" %}
 
+{% import "parts/section-products.njk" as section %}
+
 {% block content %}
 
-<section class="shop container">
-    <h2>Mais acessados</h2>
-
-    <div class="items">
-        {% for product in products %}
-            <div class="product">
-                <div 
-                    class="image"
-                    style="background-image: url('{{product.image if product.image else '//placehold.it/500x500'}}'); "
-                    >
-                </div>
-                 {% if product.old_price != 0 %}
-                    <div class="old-price">{{product.old_price}}</div>
-                 {% endif %}
-                <p>{{product.price}}</p>
-                <h4>{{product.name}}</h4>
-                <a href="/products/{{product.id}}" class="button">Comprar</a>
-            </div>
-        {% endfor %}
-    </div>
-</section>
-
+{{section.products('Mais acessados', 'container', products)}}
 
 
 
