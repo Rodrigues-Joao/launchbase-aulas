@@ -5,7 +5,7 @@ module.exports = {
         const query = `
             SELECT * 
             FROM products
-            ORDER BY update_at DESC
+            ORDER BY updated_at DESC
         `
         try {
             return db.query(query)

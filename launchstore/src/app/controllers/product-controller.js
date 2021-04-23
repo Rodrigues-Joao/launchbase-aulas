@@ -41,7 +41,7 @@ module.exports = {
         if (!product) {
             return res.send('Product Not Found!')
         }
-        const { day, month, year, hour, minutes } = date(product.update_at)
+        const { day, month, year, hour, minutes } = date(product.updated_at)
         product.published = {
             date: `${day}/${month}/${year}`,
             hour: `${hour}h${minutes}`
