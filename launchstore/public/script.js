@@ -10,6 +10,37 @@ const Mask = {
             style: 'currency',
             currency: 'BRL'
         }).format(value / 100)
+    },
+    cpfCnpj(value) {
+
+        value = value.replace(/\D/g, '')
+        if (value.length > 14)
+            value = value.slice(0, -1)
+
+        if (value.length > 11) {
+            value = value.replace(/(\d{2})(\d)/, '$1.$2')
+            value = value.replace(/(\d{3})(\d)/, '$1.$2')
+            value = value.replace(/(\d{3})(\d)/, '$1/$2')
+            value = value.replace(/(\d{4})(\d)/, '$1-$2')
+
+        } else {
+            value = value.replace(/(\d{3})(\d)/, '$1.$2')
+            value = value.replace(/(\d{3})(\d)/, '$1.$2')
+            value = value.replace(/(\d{3})(\d)/, '$1-$2')
+        }
+        return value
+    },
+    cep(value) {
+
+        value = value.replace(/\D/g, '')
+        if (value.length > 8)
+            value = value.slice(0, -1)
+
+
+        value = value.replace(/(\d{2})(\d)/, '$1.$2')
+        value = value.replace(/(\d{3})(\d)/, '$1-$2')
+
+        return value
     }
 }
 
@@ -152,5 +183,46 @@ const LightBox = {
         LightBox.target.style.top = '-100%'
         LightBox.target.style.button = 'initial'
         LightBox.closeButton.style.top = '-80px'
+    }
+}
+
+
+const Validate = {
+    apply(input, func) {
+        let results = Validate[func](input.value)
+        input.value = results.value
+        if (results.error) {
+            alert(results.error)
+        }
+    },
+    isEmail(value) {
+
+        let error = null
+            /* 
+                expressão regular para validar email. 
+                email pode começar com 1 ou + caracteres (excluido caracteres especiais) -> ^\w+
+                seguindo por conjunto de { ponto(.) ou underline (_) 
+                de forma opicional (representado pelo '?') seguindo de 1 ou + caracteres } 
+                com o asterisco dizendo que pode ter muitos ou nenhum desse conjunto -> ([\.\_]?\w+)*
+
+                depois o @
+
+                1 ou + caracteres (excluido caracteres especiais) -> \w+
+                seguindo por conjunto de { ponto(.) ou underline (_) 
+                de forma opicional (representado pelo '?') seguindo de 1 ou + caracteres } 
+                com o asterisco dizendo que pode ter muitos ou nenhum desse conjunto -> ([\.\_]?\w+)*
+
+
+                seguindo de {ponto(.), 2||3 caracteres} podendo ter 1 ou + vezes esse conjunto sinalizando o fim do email com o $ -> (\.\w{2,3})+$
+        
+            */
+        const emailFormat = /^\w+([\.\_]?\w+)*@\w+([\.\_]?\w+)*(\.\w{2,3})+$/
+
+        if (!value.match(emailFormat))
+            error = "Email inválido"
+        return {
+            error,
+            value
+        }
     }
 }

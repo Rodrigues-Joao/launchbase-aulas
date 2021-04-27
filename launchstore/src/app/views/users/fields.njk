@@ -17,7 +17,9 @@
             type="Email" 
             name="email" 
             placeholder="Digite seu email"
-            value="{{user.email}}">
+            value="{{user.email}}"
+            onblur="Validate.apply(this, 'isEmail')"
+            >
     </div>
 </div>
 <div class="item">
@@ -54,8 +56,10 @@
             required
             type="text" 
             name="cpf_cnpj" 
-            placeholder="xxx.xxx.xxx-xx"
-            value="{{user.cpf_cnpj}}">
+            placeholder="CPF ou CNPJ"
+            value="{{user.cpf_cnpj}}"
+            onkeydown="Mask.apply(this,'cpfCnpj')"
+            >
     </div>
 </div>
 
@@ -67,7 +71,9 @@
             type="text" 
             name="cep" 
             placeholder="xx.xxx-xxx"
-            value="{{user.cep}}">
+            value="{{user.cep}}"
+             onkeydown="Mask.apply(this,'cep')"
+            >
     </div>
 </div>
 <div class="item">
