@@ -1,9 +1,14 @@
+const User = require('../models/user')
+
 class UserController {
     registerForm(req, res) {
         return res.render('users/register.njk')
     }
-    post(req, res) {
+    async post(req, res) {
 
+
+
+        return res.send('passou')
     }
     show(req, res) {
 

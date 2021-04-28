@@ -59,6 +59,7 @@
             placeholder="CPF ou CNPJ"
             value="{{user.cpf_cnpj}}"
             onkeydown="Mask.apply(this,'cpfCnpj')"
+             onblur="Validate.apply(this, 'isCpfCnpj')"
             >
     </div>
 </div>
@@ -73,6 +74,7 @@
             placeholder="xx.xxx-xxx"
             value="{{user.cep}}"
              onkeydown="Mask.apply(this,'cep')"
+              onblur="Validate.apply(this, 'isCEP')"
             >
     </div>
 </div>

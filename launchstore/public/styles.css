@@ -551,3 +551,15 @@ form .item #photos-preview img {
 .user-register.container input[name="cep"] {
     max-width: 40%;
 }
+
+
+/*---------- Validate error ----------*/
+
+.input .error {
+    padding: 4px;
+    border-radius: 4px;
+    color: #e74c3c;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    font-size: 14px;
+}

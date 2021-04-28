@@ -3,6 +3,7 @@ const routes = express.Router()
 
 const SessionController = require('../app/controllers/session-controller')
 const UserController = require('../app/controllers/user-controller')
+const Validator = require('../app/validators/users')
 
 //login/logout
 
@@ -20,7 +21,7 @@ routes.post('password-reset', SessionController.reset)
 //user register
 
 routes.get('/register', UserController.registerForm)
-routes.post('/register', UserController.post)
+routes.post('/register', Validator.post, UserController.post)
 
 routes.get('/', UserController.show)
 routes.put('/', UserController.update)
