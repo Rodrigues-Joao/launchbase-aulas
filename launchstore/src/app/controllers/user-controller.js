@@ -6,12 +6,12 @@ class UserController {
     }
     async post(req, res) {
 
+        const userId = await User.create(req.body)
 
-
-        return res.send('passou')
+        return res.redirect('/users')
     }
-    show(req, res) {
-
+    async show(req, res) {
+        return res.send("CADASTRADO")
     }
 
     update(req, res) {

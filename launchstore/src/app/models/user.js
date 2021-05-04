@@ -1,6 +1,8 @@
 const { query } = require('../../config/db')
 const db = require('../../config/db')
 
+const { hash } = require('bcryptjs')
+
 module.exports = {
     findAll() {
         const query = `
@@ -14,34 +16,34 @@ module.exports = {
             console.error(err)
         }
     },
-    create(data) {
-        const query = `
-            INSERT INTO products (
+    async create(data) {
+        try {
+            const query = `
+            INSERT INTO users (
                 name,
-                category_id,
-                user_id,
-                description,
-                old_price,
-                price,
-                quantity,
-                status
-                ) VALUES ($1,$2,$3,$4,$5, $6, $7, $8) 
+                email,
+                password,
+                cpf_cnpj,
+                cep,
+                address
+                ) VALUES ($1,$2,$3,$4,$5,$6) 
                 RETURNING id
                 `
 
-        data.price = data.price.replace(/\D/g, '')
-        const values = [
-            data.name,
-            data.category_id,
-            data.user_id || 1,
-            data.description,
-            data.old_price || data.price,
-            data.price,
-            data.quantity,
-            data.status || 1
-
-        ]
-        return db.query(query, values)
+            const passwordHash = await hash(data.password, 8)
+            const values = [
+                data.name,
+                data.email,
+                passwordHash,
+                data.cpf_cnpj,
+                data.cep,
+                data.address
+            ]
+            const results = await db.query(query, values)
+            return results.rows[0].id
+        } catch (error) {
+            console.error(error)
+        }
     },
     async findOne(filters) {
         let query = `
