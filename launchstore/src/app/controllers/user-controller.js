@@ -8,10 +8,20 @@ class UserController {
 
         const userId = await User.create(req.body)
 
+        req.session.userId = userId
+
         return res.redirect('/users')
     }
     async show(req, res) {
-        return res.send("CADASTRADO")
+        const { userId: id } = req.session
+        const user = await User.findOne({ where: { id } })
+
+        if (!user) {
+            return res.render('users/register', {
+                error: "Usuário não encontrado"
+            })
+        }
+        return res.render('users/index.njk', { user })
     }
 
     update(req, res) {
