@@ -13,19 +13,33 @@ class UserController {
         return res.redirect('/users')
     }
     async show(req, res) {
-        const { userId: id } = req.session
-        const user = await User.findOne({ where: { id } })
-
-        if (!user) {
-            return res.render('users/register', {
-                error: "Usuário não encontrado"
-            })
-        }
+        const { user } = req
         return res.render('users/index.njk', { user })
     }
 
-    update(req, res) {
+    async update(req, res) {
+        try {
+            let { id, name, email, cpf_cnpj, cep, address } = req.body
+            await User.update(id, {
+                name,
+                email,
+                cpf_cnpj,
+                cep,
+                address
+            })
+            return res.render('users/index.njk', {
+                user: req.body,
+                success: 'Cadastro atualizado com sucesso!'
+            })
+        } catch (err) {
+            console.error(err)
 
+            return res.render('users/index.njk', {
+                user: req.body,
+
+                error: "Erro interno!"
+            })
+        }
     }
     delete(req, res) {}
 

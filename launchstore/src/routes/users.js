@@ -3,28 +3,31 @@ const routes = express.Router()
 
 const SessionController = require('../app/controllers/session-controller')
 const UserController = require('../app/controllers/user-controller')
-const Validator = require('../app/validators/users')
+const UserValidator = require('../app/validators/users')
+const SessionValidator = require('../app/validators/session')
+
+
 
 //login/logout
 
-routes.get('login', SessionController.loginForm)
-routes.post('login', SessionController.login)
-routes.post('logout', SessionController.logout)
+routes.get('/login', SessionController.loginForm)
+routes.post('/login', SessionValidator.login, SessionController.login)
+routes.post('/logout', SessionController.logout)
 
-// reset password
+// reset pas/word
 
-routes.get('forgot-password', SessionController.forgotForm)
-routes.get('password-reset', SessionController.resetForm)
-routes.post('forgot-password', SessionController.forgot)
-routes.post('password-reset', SessionController.reset)
+routes.get('/orgot-password', SessionController.forgotForm)
+routes.get('/assword-reset', SessionController.resetForm)
+routes.post('/forgot-password', SessionController.forgot)
+routes.post('/password-reset', SessionController.reset)
 
 //user register
 
 routes.get('/register', UserController.registerForm)
-routes.post('/register', Validator.post, UserController.post)
+routes.post('/register', UserValidator.post, UserController.post)
 
-routes.get('/', UserController.show)
-routes.put('/', UserController.update)
+routes.get('/', UserValidator.show, UserController.show)
+routes.put('/', UserValidator.update, UserController.update)
 routes.delete('/', UserController.delete)
 
 
