@@ -6,18 +6,20 @@ const UserController = require('../app/controllers/user-controller')
 const UserValidator = require('../app/validators/users')
 const SessionValidator = require('../app/validators/session')
 
+const { isLogged } = require('../app/middlewares/session')
+
 
 
 //login/logout
 
-routes.get('/login', SessionController.loginForm)
+routes.get('/login', isLogged, SessionController.loginForm)
 routes.post('/login', SessionValidator.login, SessionController.login)
 routes.post('/logout', SessionController.logout)
 
 // reset pas/word
 
-routes.get('/orgot-password', SessionController.forgotForm)
-routes.get('/assword-reset', SessionController.resetForm)
+routes.get('/forgot-password', SessionController.forgotForm)
+routes.get('/password-reset', SessionController.resetForm)
 routes.post('/forgot-password', SessionController.forgot)
 routes.post('/password-reset', SessionController.reset)
 
