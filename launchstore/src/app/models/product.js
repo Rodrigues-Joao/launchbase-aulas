@@ -49,6 +49,13 @@ module.exports = {
             console.error(err)
         }
     },
+    findUser(user_id) {
+        try {
+            return db.query('SELECT * FROM products WHERE user_id = $1', [user_id])
+        } catch (err) {
+            console.error(err)
+        }
+    },
     update(data) {
         const query = `
             UPDATE products SET

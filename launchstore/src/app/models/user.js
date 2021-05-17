@@ -1,5 +1,6 @@
-const { query } = require('../../config/db')
 const db = require('../../config/db')
+const Product = require('../models/product')
+const fs = require('fs')
 
 const { hash } = require('bcryptjs')
 const { FileSystemLoader } = require('nunjucks')
@@ -81,9 +82,7 @@ module.exports = {
 
         return db.query(query)
     },
-    delete(id) {
-        return db.query('DELETE FROM products WHERE id = $1', [id])
-    },
+
 
     search(params) {
         const { filter, category } = params
@@ -116,5 +115,18 @@ module.exports = {
         `
 
         return db.query(query)
+    },
+    async delete(id) {
+        let results = await Product.findUser(id)
+        const products = results.rows
+
+        const allFilesPromise = products.map(product => Product.files(product.id))
+        let promiseResults = await Promise.all(allFilesPromise)
+
+        await db.query(`DELETE FROM users WHERE id = $1`, [id])
+
+        promiseResults.map(results => {
+            results.rows.map(file => fs.unlinkSync(file.path))
+        })
     }
 }

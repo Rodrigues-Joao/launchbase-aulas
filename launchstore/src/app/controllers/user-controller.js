@@ -41,7 +41,20 @@ class UserController {
             })
         }
     }
-    delete(req, res) {}
+    async delete(req, res) {
+        try {
+            await User.delete(req.body.id)
+            req.session.destroy()
+            return res.render('session/login.njk', {
+                success: "Conta deletada com sucesso"
+            })
+        } catch (error) {
+            console.error(error)
+            return res.render('users/index.njk', {
+                error: "Erro ao deletar sua conta!"
+            })
+        }
+    }
 
 }
 module.exports = new UserController()
